@@ -1,6 +1,6 @@
 # Flux + React.js + Rails のデモアプリ(複数モデル）
 
-Cat と Dog という２つのモデルがあり、猫と犬の名前(name)と体重(weight)を管理します。
+猫(cat)と犬(dog)の名前(name)と体重(weight)を管理します。Cat と Dog という２つのモデルがあるのがポイントです。
 
 Facebook の [flux-todomvc](https://github.com/facebook/flux/tree/master/examples/flux-todomvc) を参考にしました。
 
