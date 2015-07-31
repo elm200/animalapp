@@ -1,57 +1,89 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Animal App(Mock)</title>
+    <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css" />
   </head>
   <body>
-    <section id="animalapp" >
-    <div>
-      <header id="header" class="container">
-      <div class="row">
-        <button class="col-sm-3">Cats</button>
-        <button class="col-sm-3">Dogs</button>
+    <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">動物管理システム</a>
       </div>
-      <div class="row">
-        <h1>cats</h1>
-      </div>
-      <div id="new-cat">
-        <div class="row">
-          <span>Name:</span>
-          <input value="" placeholder="name" />
-        </div>
-        <div class="row">
-          <span>Weight:</span>
-          <input value="" placeholder="weight" />
-        </div>
-        <div class="row">
-          <button class="Save">Save</button>
-        </div>
-      </div>
-      </header>
-      <section id="main">
-      <ul id="cat-list">
-        <li class="">
-        <div class="view">
-          <label>
-            <span>Mike</span>
-            <span>(</span>
-            <span>3000</span>
-            <span>)</span>
-          </label>
-          <button class="destroy">Destroy</button>
-        </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          アカウント情報<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">パスワード変更</a></li>
+          <li class="divider"></li>
+          <li><a href="#">ログアウト</a></li>
+        </ul>
         </li>
       </ul>
-      </section>
     </div>
-    </section>
+    </nav>
+    </header>
+    <div class="container">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#menu1" data-toggle="tab">猫</a></li>
+        <li><a href="#menu2" data-toggle="tab">犬</a></li>
+      </ul>
+      <div class="tab-content container">
+        <div class="tab-pane fade in active" id="menu1">
+          <div class="row">
+            <table class="table table-striped table-hover" id="cat-list">
+              <tr>
+                <th>名前</th>
+                <th>体重</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>Mike</td>
+                <td>3000</td>
+                <td><button class="destroy btn btn-primary">削除</button></td>
+              </tr>
+              <tr>
+                <td>Tama</td>
+                <td>2000</td>
+                <td><button class="destroy btn btn-primary">削除</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="menu2">
+          <div class="row">
+            <table class="table table-striped table-hover" id="dog-list">
+              <tr>
+                <th>名前</th>
+                <th>体重</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>Pochi</td>
+                <td>5000</td>
+                <td><button class="destroy btn btn-primary">削除</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer id="info">
-    <p>Double-click to edit a todo</p>
-    <p>Created by Eiji Sakai</p>
+    <p class="text-muted text-center">Created by Eiji Sakai</p>
     </footer>
+
     <!--script src="js/bundle.js">
     </script-->
+    <script src="https://code.jquery.com/jquery-2.1.4.js">
+    </script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js">
+    </script>
   </body>
 </html>
