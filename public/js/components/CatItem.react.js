@@ -23,31 +23,38 @@ var CatItem = React.createClass({
   render: function() {
     var cat = this.props.cat;
 
-    var input;
-    if (this.state.isEditing) {
-      input =
-        <CatForm
-          className="edit"
-          onSave={this._onSave}
-          cat={cat}
-        />;
-    }
+    // var input;
+    // if (this.state.isEditing) {
+    //   input =
+    //     <CatForm
+    //       className="edit"
+    //       onSave={this._onSave}
+    //       cat={cat}
+    //     />;
+    // }
 
+    // return (
+    //   <li
+    //     className={cx({
+    //       'editing': this.state.isEditing
+    //     })}
+    //     key={cat.id}>
+    //     <div className="view">
+    //       <label onDoubleClick={this._onDoubleClick}>
+    //         {cat.name}({cat.weight})
+    //       </label>
+    //       <button className="destroy" onClick={this._onDestroyClick} >Destroy</button>
+    //     </div>
+    //     {input}
+    //   </li>
+    // );
     return (
-      <li
-        className={cx({
-          'editing': this.state.isEditing
-        })}
-        key={cat.id}>
-        <div className="view">
-          <label onDoubleClick={this._onDoubleClick}>
-            {cat.name}({cat.weight})
-          </label>
-          <button className="destroy" onClick={this._onDestroyClick} >Destroy</button>
-        </div>
-        {input}
-      </li>
-    );
+      <tr key={cat.id}>
+        <td>{cat.name}</td>
+        <td>{cat.weight}</td>
+        <td><a href="#" onClick={this._onDestroyClick}>削除</a></td>
+      </tr>
+    )
   },
 
   _onDoubleClick: function() {

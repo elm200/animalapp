@@ -16,6 +16,7 @@ var CatList = React.createClass({
     // This section should be hidden by default
     // and shown when there are cats.
     if (Object.keys(this.props.cats).length < 1) {
+      // return <p className="text-muted">記録が存在しません</p>;
       return null;
     }
 
@@ -25,11 +26,22 @@ var CatList = React.createClass({
     for (var key in cats) {
       cat_items.push(<CatItem key={key} cat={cats[key]} />);
     }
-
+      // <section id="main">
+      //   <ul id="cat-list">{cat_items}</ul>
+      // </section>
     return (
-      <section id="main">
-        <ul id="cat-list">{cat_items}</ul>
-      </section>
+      <table className="table table-striped table-hover" id="cat-list">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>体重</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {cat_items}
+        </tbody>
+      </table>
     );
   },
 });

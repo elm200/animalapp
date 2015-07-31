@@ -17,31 +17,52 @@ var CatForm = React.createClass({
   },
 
   render: function() {
+    // return (
+    //   <div
+    //     className={this.props.className}
+    //     id={this.props.id}
+    //  >
+    //     Name:
+    //     <input
+    //       ref='name'
+    //       value={this.state.cat.name}
+    //       placeholder='name'
+    //       autoFocus={true}
+    //       onKeyDown={this._onKeyDown}
+    //       onChange={this._onChange}
+    //     />
+    //     Weight:
+    //     <input
+    //       ref='weight'
+    //       value={this.state.cat.weight}
+    //       placeholder='weight'
+    //       onKeyDown={this._onKeyDown}
+    //       onChange={this._onChange}
+    //     />
+    //     <button className="Save" onClick={this._save}>
+    //       Save
+    //     </button>
+    //   </div>
+    // );
     return (
-      <div
-        className={this.props.className}
-        id={this.props.id}
-     >
-        Name:
-        <input
-          ref='name'
-          value={this.state.cat.name}
-          placeholder='name'
-          autoFocus={true}
-          onKeyDown={this._onKeyDown}
-          onChange={this._onChange}
-        />
-        Weight:
-        <input
-          ref='weight'
-          value={this.state.cat.weight}
-          placeholder='weight'
-          onKeyDown={this._onKeyDown}
-          onChange={this._onChange}
-        />
-        <button className="Save" onClick={this._save}>
-          Save
-        </button>
+      <div>
+      <h2>新規登録</h2>
+      <div className="col-md-8">
+        <div id="new-cat" className="form-horizontal">
+          <div className="form-group">
+            <label htmlFor="name">名前</label>
+            <input className="form-control" id="name" ref="name" autoFocus={true} onChange={this._onChange} value={this.state.cat.name} placeholder="名前" />
+            <span className="help-block">名前は最低3文字以上を設定してください</span>
+          </div>
+          <div className="form-group">
+            <label htmlFor="weight">体重</label>
+            <input className="form-control" id="weight" ref="weight" onChange={this._onChange} value={this.state.cat.weight} placeholder="体重" />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-lg btn-primary" onClick={this._save}>保存する</button>
+          </div>
+        </div>
+      </div>
       </div>
     );
   },
