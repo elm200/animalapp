@@ -59,15 +59,6 @@ var AnimalApp = React.createClass({
         // no ops
     }
 
-  	// return (
-    //   <div>
-    //     <Header
-    //       onMenuChange={this._onMenuChange}
-    //       current={this.state.current}
-    //     />
-    //     {list}
-    //   </div>
-  	// );
     return (
     <div>
     <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">

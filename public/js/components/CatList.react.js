@@ -26,9 +26,6 @@ var CatList = React.createClass({
     for (var key in cats) {
       cat_items.push(<CatItem key={key} cat={cats[key]} />);
     }
-      // <section id="main">
-      //   <ul id="cat-list">{cat_items}</ul>
-      // </section>
     return (
       <table className="table table-striped table-hover" id="cat-list">
         <thead>

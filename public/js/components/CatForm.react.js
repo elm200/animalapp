@@ -45,7 +45,7 @@ var CatForm = React.createClass({
     //   </div>
     // );
     return (
-      <div>
+      <section>
       <h2>新規登録</h2>
       <div className="col-md-8">
         <div id="new-cat" className="form-horizontal">
@@ -63,7 +63,7 @@ var CatForm = React.createClass({
           </div>
         </div>
       </div>
-      </div>
+      </section>
     );
   },
 

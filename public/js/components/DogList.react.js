@@ -24,9 +24,18 @@ var DogList = React.createClass({
     }
 
     return (
-      <section id="main">
-        <ul id="dog-list">{dog_items}</ul>
-      </section>
+      <table className="table table-striped table-hover" id="dog-list">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>体重</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {dog_items}
+        </tbody>
+      </table>
     );
   },
 });

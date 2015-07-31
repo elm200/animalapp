@@ -54,7 +54,7 @@ var CatItem = React.createClass({
         <td>{cat.weight}</td>
         <td><a href="#" onClick={this._onDestroyClick}>削除</a></td>
       </tr>
-    )
+    );
   },
 
   _onDoubleClick: function() {
