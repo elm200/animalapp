@@ -11,7 +11,4 @@ var React = require('react');
 
 var AnimalApp = require('./components/AnimalApp.react');
 
-React.render(
-  <AnimalApp />,
-  document.getElementById('animalapp')
-);
+AnimalApp.run();

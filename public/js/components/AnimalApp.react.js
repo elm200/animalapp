@@ -3,28 +3,30 @@ var Header = require('./Header.react');
 
 var CatList = require('./CatList.react');
 var CatStore = require('../stores/CatStore');
-var CatActions = require('../actions/CatActions');
 var CatForm = require('./CatForm.react');
 
 var DogList = require('./DogList.react');
 var DogStore = require('../stores/DogStore');
-var DogActions = require('../actions/DogActions');
 var DogForm = require('./DogForm.react');
 
 var React = require('react');
 var cx = require('react/lib/cx');
 
-var _current = 'cats';
+var Router = require('react-router');
+var DefaultRoute = Router.DefaultRoute;
+var Link = Router.Link;
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
 
 function getState() {
   return {
     cats: CatStore.getAll(),
     dogs: DogStore.getAll(),
-    current: _current
   };
 }
 
 var AnimalApp = React.createClass({
+  mixins: [ Router.State ],
 
   getInitialState: function() {
     return getState();
@@ -41,19 +43,27 @@ var AnimalApp = React.createClass({
   },
 
   render: function() {
-    var list;
-    var form;
-    var current_ja;
-    switch(this.state.current) {
-      case 'cats':
-        list = <CatList cats={this.state.cats} />;
-        form = <CatForm id="new-cat" onSave={this._onSave} />;
-        current_ja = "猫";
+    var title;
+    var link;
+    var breadcrumb, breadcrumb2;
+    switch(this.getPathname()) {
+      case '/cats':
+        title = "猫一覧";
+        breadcrumb = <li><Link to="cats">{title}</Link></li>;
         break;
-      case 'dogs':
-        list = <DogList dogs={this.state.dogs} />;
-        form = <DogForm id="new-dog" onSave={this._onSave} />;
-        current_ja = "犬";
+      case '/cats/new':
+        title = "猫新規登録";
+        breadcrumb = <li><Link to="cats">猫一覧</Link></li>;
+        breadcrumb2 = <li><Link to="cats_new">{title}</Link></li>;
+        break;
+      case '/dogs':
+        title = "犬一覧";
+        breadcrumb = <li><Link to="dogs">{title}</Link></li>;
+        break;
+      case '/dogs/new':
+        title = "犬新規登録";
+        breadcrumb = <li><Link to="dogs">犬一覧</Link></li>;
+        breadcrumb2 = <li><Link to="dogs_new">{title}</Link></li>;
         break;
       default:
         // no ops
@@ -84,20 +94,20 @@ var AnimalApp = React.createClass({
       <div className="col-md-2">
         <h4>メニュー</h4>
         <ul className="list-group">
-          <a className={cx({"list-group-item":true, "active": this.state.current === 'cats'})} href="#" onClick={this._onMenuChange.bind(null, 'cats')}>猫</a>
-          <a className={cx({"list-group-item":true, "active": this.state.current === 'dogs'})} href="#" onClick={this._onMenuChange.bind(null, 'dogs')}>犬</a>
+          <Link to="cats" className={this.menuClass("/cats")}>猫</Link>
+          <Link to="dogs" className={this.menuClass("/dogs")}>犬</Link>
         </ul>
       </div>
       <div className="col-md-10">
         <div className="page-header">
-          <h1>{current_ja}一覧</h1>
+          <h1>{title}</h1>
         </div>
         <ol className="breadcrumb">
-          <li><a href="#">メイン</a></li>
-          <li><a href="#">{current_ja}一覧</a></li>
+          <li><Link to="app">メイン</Link></li>
+          {breadcrumb}
+          {breadcrumb2}
         </ol>
-        {list}
-        {form}
+        <RouteHandler cats={this.state.cats} dogs={this.state.dogs} />
       </div>
   </section>
   <footer id="info">
@@ -107,30 +117,33 @@ var AnimalApp = React.createClass({
   );
   },
 
-  /**
-   * Event handler for 'change' events coming from the CatStore
-   */
   _onChange: function() {
     this.setState(getState());
   },
 
-  _onMenuChange: function(current) {
-    _current = current;
-    this.setState(getState());
+  isActiveLink: function(path) {
+    return this.getPathname().match(new RegExp("^" + path));
   },
 
-  _onSave: function(params) {
-    switch(this.state.current) {
-      case 'cats':
-        CatActions.create(params);
-        break;
-      case 'dogs':
-        DogActions.create(params);
-        break;
-      default:
-        // no ops
-    }
+  menuClass: function(path) {
+    return cx({"list-group-item":true, "active":this.isActiveLink(path)});
   },
+
 });
+
+var routes = (
+  <Route name="app" path="/" handler={AnimalApp}>
+    <Route name="cats" path="cats" handler={CatList}/>
+    <Route name="cats_new" path="/cats/new" handler={CatForm}/>
+    <Route name="dogs" path="dogs" handler={DogList}/>
+    <Route name="dogs_new" path="/dogs/new" handler={DogForm}/>
+  </Route>
+);
+
+AnimalApp.run = function() {
+  Router.run(routes, function(Handler) {
+    React.render(<Handler/>, document.body);
+  });
+};
 
 module.exports = AnimalApp;

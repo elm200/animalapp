@@ -1,14 +1,12 @@
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
+var DogActions = require('../actions/DogActions');
 
 var ENTER_KEY_CODE = 13;
 
 var DogForm = React.createClass({
 
   propTypes: {
-    className: ReactPropTypes.string,
-    id: ReactPropTypes.string,
-    onSave: ReactPropTypes.func.isRequired,
     dog: ReactPropTypes.object
   },
 
@@ -41,7 +39,7 @@ var DogForm = React.createClass({
   },
 
   _save: function() {
-    this.props.onSave(this.state.dog);
+    DogActions.create(this.state.dog);
     this.setState({
       dog:
         {

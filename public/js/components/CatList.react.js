@@ -3,18 +3,15 @@ var ReactPropTypes = React.PropTypes;
 var CatActions = require('../actions/CatActions');
 var CatItem = require('./CatItem.react');
 
+var Router = require('react-router');
+
 var CatList = React.createClass({
 
   propTypes: {
     cats: ReactPropTypes.object.isRequired,
   },
 
-  /**
-   * @return {object}
-   */
   render: function() {
-    // This section should be hidden by default
-    // and shown when there are cats.
     if (Object.keys(this.props.cats).length < 1) {
       // return <p className="text-muted">記録が存在しません</p>;
       return null;
@@ -27,6 +24,7 @@ var CatList = React.createClass({
       cat_items.push(<CatItem key={key} cat={cats[key]} />);
     }
     return (
+      <div>
       <table className="table table-striped table-hover" id="cat-list">
         <thead>
           <tr>
@@ -39,6 +37,8 @@ var CatList = React.createClass({
           {cat_items}
         </tbody>
       </table>
+      <Router.Link to="cats_new">新規作成</Router.Link>
+      </div>
     );
   },
 });
