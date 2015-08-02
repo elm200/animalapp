@@ -7,7 +7,7 @@ Facebook の [flux-todomvc](https://github.com/facebook/flux/tree/master/example
 上記のサンプルでは、Store がオンメモリだったので、Ajax で Rails のバックエンドと通信して、データをデータベース(Sqlite3)に保存するようにしました。
 
 ## 既知の問題点
-UIがダサすぎるので、早急になんとかするつもりです……。
+編集機能がまだありません。
 
 ## 注意
 現在、実装のわかりやすさを優先して CSRF からの保護を無効にしてあります。近々、CSRF 対策を行う予定。
