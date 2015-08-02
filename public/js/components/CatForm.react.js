@@ -1,10 +1,13 @@
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var CatActions = require('../actions/CatActions');
+var Router = require('react-router');
+var Navigation = Router.Navigation;
 
 var ENTER_KEY_CODE = 13;
 
 var CatForm = React.createClass({
+  mixins: [ Navigation ],
 
   propTypes: {
     cat: ReactPropTypes.object
@@ -48,6 +51,7 @@ var CatForm = React.createClass({
           weight: ''
         }
     });
+    this.transitionTo('cats');
   },
 
   _onChange: function(event) {

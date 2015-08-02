@@ -4,19 +4,16 @@ var CatActions = require('../actions/CatActions');
 var CatItem = require('./CatItem.react');
 
 var Router = require('react-router');
+var Navigation = Router.Navigation;
 
 var CatList = React.createClass({
+  mixins: [ Navigation ],
 
   propTypes: {
     cats: ReactPropTypes.object.isRequired,
   },
 
   render: function() {
-    if (Object.keys(this.props.cats).length < 1) {
-      // return <p className="text-muted">記録が存在しません</p>;
-      return null;
-    }
-
     var cats = this.props.cats;
     var cat_items = [];
 
@@ -37,7 +34,7 @@ var CatList = React.createClass({
           {cat_items}
         </tbody>
       </table>
-      <Router.Link to="cats_new">新規作成</Router.Link>
+      <button className="btn btn-lg btn-primary" onClick={this.transitionTo.bind(null, 'cats_new')}>新規作成</button>
       </div>
     );
   },

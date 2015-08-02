@@ -2,21 +2,18 @@ var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var DogActions = require('../actions/DogActions');
 var DogItem = require('./DogItem.react');
+
 var Router = require('react-router');
+var Navigation = Router.Navigation;
 
 var DogList = React.createClass({
+  mixins: [ Navigation ],
 
   propTypes: {
     dogs: ReactPropTypes.object.isRequired,
   },
 
   render: function() {
-    // This section should be hidden by default
-    // and shown when there are dogs.
-    if (Object.keys(this.props.dogs).length < 1) {
-      return null;
-    }
-
     var dogs = this.props.dogs;
     var dog_items = [];
 
@@ -38,7 +35,7 @@ var DogList = React.createClass({
           {dog_items}
         </tbody>
       </table>
-      <Router.Link to="dogs_new">新規作成</Router.Link>
+      <button className="btn btn-lg btn-primary" onClick={this.transitionTo.bind(null, 'dogs_new')}>新規作成</button>
       </div>
     );
   },

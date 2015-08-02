@@ -17,6 +17,7 @@ var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
+var Redirect = Router.Redirect;
 
 function getState() {
   return {
@@ -137,6 +138,7 @@ var routes = (
     <Route name="cats_new" path="/cats/new" handler={CatForm}/>
     <Route name="dogs" path="dogs" handler={DogList}/>
     <Route name="dogs_new" path="/dogs/new" handler={DogForm}/>
+    <Redirect from="/" to="/cats" />
   </Route>
 );
 

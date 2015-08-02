@@ -1,10 +1,13 @@
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var DogActions = require('../actions/DogActions');
+var Router = require('react-router');
+var Navigation = Router.Navigation;
 
 var ENTER_KEY_CODE = 13;
 
 var DogForm = React.createClass({
+  mixins: [ Navigation ],
 
   propTypes: {
     dog: ReactPropTypes.object
@@ -48,6 +51,7 @@ var DogForm = React.createClass({
           weight: ''
         }
     });
+    this.transitionTo('dogs');
   },
 
   _onChange: function(event) {
