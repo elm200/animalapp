@@ -39,7 +39,7 @@ function update(id, params) {
     url: 'http://localhost:3000/cats/' + id + '.json',
     type: 'POST',
     data: {
-      todo: updates,
+      cat: params,
       _method: 'PATCH'
     }
   }).done(function(data, status, xhr) {
@@ -85,20 +85,18 @@ var CatStore = assign({}, EventEmitter.prototype, {
     return _cats;
   },
 
+  find: function(id) {
+    return _cats[id];
+  },
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
 
-  /**
-   * @param {function} callback
-   */
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
   },
 
-  /**
-   * @param {function} callback
-   */
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }

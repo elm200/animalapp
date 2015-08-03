@@ -1,26 +1,29 @@
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var CatActions = require('../actions/CatActions');
+var CatStore = require('../stores/CatStore');
 var Router = require('react-router');
 var Navigation = Router.Navigation;
+var State = Router.State;
 
 var ENTER_KEY_CODE = 13;
 
 var CatForm = React.createClass({
-  mixins: [ Navigation ],
+  mixins: [ Navigation, State ],
 
   propTypes: {
     cat: ReactPropTypes.object
   },
 
   getInitialState: function() {
-    return {cat: (this.props.cat || {name: '', weight: ''})};
+    var cat;
+    cat = CatStore.find(this.context.router.getCurrentParams().id);
+    return {cat: (cat || {name: '', weight: ''})};
   },
 
   render: function() {
     return (
       <section>
-      <h2>新規登録</h2>
       <div className="col-md-8">
         <div id="new-cat" className="form-horizontal">
           <div className="form-group">
@@ -42,7 +45,12 @@ var CatForm = React.createClass({
   },
 
   _save: function() {
-    CatActions.create(this.state.cat);
+    if (this.getPathname().match(/new$/)) {
+      CatActions.create(this.state.cat);
+    } else {
+      CatActions.update(this.state.cat.id, this.state.cat);
+    }
+
     this.setState({
       cat:
         {

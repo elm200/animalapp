@@ -1,6 +1,3 @@
-//var Footer = require('./Footer.react');
-var Header = require('./Header.react');
-
 var CatList = require('./CatList.react');
 var CatStore = require('../stores/CatStore');
 var CatForm = require('./CatForm.react');
@@ -56,6 +53,11 @@ var AnimalApp = React.createClass({
         title = "猫新規登録";
         breadcrumb = <li><Link to="cats">猫一覧</Link></li>;
         breadcrumb2 = <li><Link to="cats_new">{title}</Link></li>;
+        break;
+      case '/cats/edit':
+        title = "猫編集";
+        breadcrumb = <li><Link to="cats">猫一覧</Link></li>;
+        breadcrumb2 = <li><Link to="cats_edit">{title}</Link></li>;
         break;
       case '/dogs':
         title = "犬一覧";
@@ -136,6 +138,7 @@ var routes = (
   <Route name="app" path="/" handler={AnimalApp}>
     <Route name="cats" path="cats" handler={CatList}/>
     <Route name="cats_new" path="/cats/new" handler={CatForm}/>
+    <Route name="cats_edit" path="/cats/:id/edit" handler={CatForm}/>
     <Route name="dogs" path="dogs" handler={DogList}/>
     <Route name="dogs_new" path="/dogs/new" handler={DogForm}/>
     <Redirect from="/" to="/cats" />

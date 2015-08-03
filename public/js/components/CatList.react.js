@@ -28,6 +28,7 @@ var CatList = React.createClass({
             <th>名前</th>
             <th>体重</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
