@@ -6,7 +6,7 @@ var DogList = require('./DogList.react');
 var DogStore = require('../stores/DogStore');
 var DogForm = require('./DogForm.react');
 
-var React = require('react');
+var React = require('react/addons');
 var cx = require('react/lib/cx');
 
 var Router = require('react-router');
@@ -15,6 +15,8 @@ var Link = Router.Link;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 var Redirect = Router.Redirect;
+
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 function getState() {
   return {
@@ -110,7 +112,11 @@ var AnimalApp = React.createClass({
           {breadcrumb}
           {breadcrumb2}
         </ol>
-        <RouteHandler cats={this.state.cats} dogs={this.state.dogs} />
+        <ReactCSSTransitionGroup transitionName="example">
+          <div key="route_handler">
+          <RouteHandler cats={this.state.cats} dogs={this.state.dogs} />
+          </div>
+        </ReactCSSTransitionGroup>
       </div>
   </section>
   <footer id="info">

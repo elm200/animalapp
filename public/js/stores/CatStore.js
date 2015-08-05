@@ -28,7 +28,9 @@ function create(params) {
   }).done(function(data, status, xhr) {
     getAll();
   }).fail(function(xhr, status, error) {
-    alert('$.ajax error!(POST /cats.json)');
+    // alert('$.ajax error!(POST /cats.json)');
+    alert(xhr.responseText);
+    getAll();
   });
 }
 
@@ -45,7 +47,9 @@ function update(id, params) {
   }).done(function(data, status, xhr) {
     getAll();
   }).fail(function(xhr, status, error) {
-    alert('$.ajax error!(PATCH /cats/:id.json)');
+    // alert('$.ajax error!(PATCH /cats/:id.json)');
+    alert(xhr.responseText);
+    getAll();
   });
 }
 
@@ -61,7 +65,9 @@ function destroy(id) {
   }).done(function(data, status, xhr) {
     getAll();
   }).fail(function(xhr, status, error) {
-    alert('$.ajax error!(DELETE /cats/:id.json)');
+    // alert('$.ajax error!(DELETE /cats/:id.json)');
+    alert(xhr.responseText);
+    getAll();
   });
 }
 
